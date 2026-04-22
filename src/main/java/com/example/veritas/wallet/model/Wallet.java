@@ -1,0 +1,26 @@
+package com.example.veritas.wallet.model;
+
+import com.example.veritas.user.model.User;
+import jakarta.persistence.*;
+
+import java.math.BigDecimal;
+import java.time.LocalDateTime;
+import java.util.UUID;
+
+@Entity
+public class Wallet {
+    @Id
+    @GeneratedValue(strategy = GenerationType.UUID)
+    private UUID id;
+    @ManyToOne
+    @JoinColumn(name = "owner_id", nullable = false)
+    private User owner;
+    @Column(nullable = false)
+    private BigDecimal balance;
+    @Column(nullable = false)
+    private LocalDateTime createdAt;
+    @Column(nullable = false)
+    private LocalDateTime updatedAt;
+
+    //TODO: Transactions
+}

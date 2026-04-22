@@ -1,8 +1,10 @@
 package com.example.veritas.user.model;
 
+import com.example.veritas.wallet.model.Wallet;
 import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.UUID;
 
 @Entity
@@ -20,10 +22,13 @@ public class User {
     private String firstName;
     @Column
     private String lastName;
-    @Column
+    @Column(nullable = false)
     private LocalDateTime createdAt;
-    @Column
+    @Column(nullable = false)
     private LocalDateTime updatedAt;
 
-    // TODO:Wallets;
+    @OneToMany(mappedBy = "owner",
+               cascade = CascadeType.ALL)
+    private List<Wallet> wallets;
+
 }
