@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Veritas | Transfer</title>
+  <link rel="stylesheet" href="../../../../../../../veritas-fe/styles.css">
+</head>
+<body>
+  <div class="page-shell">
+    <header class="site-header">
+      <div class="container navbar">
+        <a class="brand" href="../../../../../../../veritas-fe/home.html" aria-label="Veritas dashboard">
+          <span class="logo-mark" aria-hidden="true">V</span>
+          <span class="logo-word">
+            <span class="logo-name">Veritas</span>
+            <span class="logo-tag">Banking</span>
+          </span>
+        </a>
+        <nav class="nav-links" aria-label="Primary navigation">
+          <a class="nav-link" href="../../../../../../../veritas-fe/home.html">Home</a>
+          <a class="nav-link" href="wallet.html">Wallet</a>
+          <a class="nav-link" href="transactions.html">Transactions</a>
+          <a class="nav-link active" href="transfer.html">Transfer</a>
+          <a class="nav-link" href="../../../../../../../veritas-fe/profile.html">Profile</a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="main-content">
+      <div class="container auth-layout">
+        <section class="section-heading">
+          <span class="eyebrow">Money movement</span>
+          <h1>Send a transfer with clear details.</h1>
+          <p class="section-copy">The transfer form uses the same input and button system as the rest of the app to keep actions familiar and consistent.</p>
+        </section>
+
+        <section class="form-card" aria-labelledby="transfer-heading">
+          <div class="section-heading">
+            <h2 id="transfer-heading">New transfer</h2>
+            <p class="section-copy">Enter recipient banking details and the payment description.</p>
+          </div>
+          <form class="form" action="#" method="post">
+            <div class="form-group">
+              <label for="recipient-iban">Recipient IBAN</label>
+              <input id="recipient-iban" name="recipient-iban" type="text" placeholder="DE89 3704 0044 0532 0130 00" required>
+            </div>
+            <div class="form-group">
+              <label for="transfer-amount">Amount</label>
+              <input id="transfer-amount" name="amount" type="number" min="0" step="0.01" placeholder="0.00" required>
+            </div>
+            <div class="form-group">
+              <label for="transfer-description">Description</label>
+              <textarea id="transfer-description" name="description" placeholder="Add a note for this transfer"></textarea>
+            </div>
+            <button class="button button-primary" type="submit">Submit transfer</button>
+          </form>
+        </section>
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="container footer-inner">
+        <p>&copy; Veritas Banking App</p>
+      </div>
+    </footer>
+  </div>
+</body>
+</html>
