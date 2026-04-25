@@ -2,7 +2,6 @@ package com.example.veritas.security;
 
 import com.example.veritas.user.model.UserRole;
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
 import lombok.Getter;
 import org.springframework.security.core.GrantedAuthority;
@@ -31,6 +30,16 @@ public class AuthenticationDetails implements UserDetails {
         SimpleGrantedAuthority authority = new SimpleGrantedAuthority("ROLE_" + role.name());
 
         return List.of(authority);
+    }
+
+    @Override
+    public String getUsername() {
+        return this.username;
+    }
+
+    @Override
+    public String getPassword() {
+        return this.password;
     }
 
     @Override

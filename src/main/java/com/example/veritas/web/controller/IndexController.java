@@ -1,13 +1,23 @@
 package com.example.veritas.web.controller;
 
+import com.example.veritas.user.service.UserService;
+import com.example.veritas.web.dto.RegisterRequest;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 @RequestMapping("/")
 public class IndexController {
+    private final UserService userService;
+
+    @Autowired
+    public IndexController(UserService userService) {
+        this.userService = userService;
+    }
 
 
     @GetMapping
@@ -19,7 +29,14 @@ public class IndexController {
     public ModelAndView getRegisterPage() {
         ModelAndView mav = new ModelAndView();
         mav.setViewName("register");
+        mav.addObject("registerRequest", new RegisterRequest());
         return mav;
+    }
+
+    @PostMapping("/register")
+    public String registerUser(RegisterRequest registerRequest) {
+        userService.register(registerRequest);
+        return "redirect:/login";
     }
 
     @GetMapping("/login")
