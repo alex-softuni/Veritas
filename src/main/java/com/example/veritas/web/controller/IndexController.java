@@ -10,10 +10,8 @@ import org.springframework.web.servlet.ModelAndView;
 public class IndexController {
 
 
-
     @GetMapping
     public String getIndexPage() {
-
         return "index";
     }
 

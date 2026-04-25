@@ -37,6 +37,13 @@ public class User {
     private String lastName;
 
     @Column(nullable = false)
+    private boolean enabled;
+
+    @Column(nullable = false)
+    @Enumerated(EnumType.STRING)
+    private UserRole role;
+
+    @Column(nullable = false)
     private LocalDateTime createdAt;
 
     @Column(nullable = false)
