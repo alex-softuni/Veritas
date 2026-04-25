@@ -10,7 +10,7 @@
   <div class="page-shell">
     <header class="site-header">
       <div class="container navbar">
-        <a class="brand" href="home.html" aria-label="Veritas dashboard">
+        <a class="brand" th:href="@{/home}" aria-label="Veritas dashboard">
           <span class="logo-mark" aria-hidden="true">V</span>
           <span class="logo-word">
             <span class="logo-name">Veritas</span>
@@ -18,11 +18,11 @@
           </span>
         </a>
         <nav class="nav-links" aria-label="Primary navigation">
-          <a class="nav-link active" href="home.html">Home</a>
-          <a class="nav-link" href="wallet.html">Wallet</a>
-          <a class="nav-link" href="transactions.html">Transactions</a>
-          <a class="nav-link" href="transfer.html">Transfer</a>
-          <a class="nav-link" href="profile.html">Profile</a>
+          <a class="nav-link active" th:href="@{/home}">Home</a>
+          <a class="nav-link" th:href="@{/wallets}">Wallet</a>
+          <a class="nav-link" th:href="@{/transactions}">Transactions</a>
+          <a class="nav-link" th:href="@{/transfers}">Transfer</a>
+          <a class="nav-link" th:href="@{/profile}">Profile</a>
         </nav>
       </div>
     </header>

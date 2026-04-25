@@ -11,7 +11,7 @@
     <main class="main-content">
       <div class="auth-centered">
         <section class="form-card auth-panel" aria-labelledby="register-heading">
-          <a class="auth-brand" href="index.html" aria-label="Veritas home">
+          <a class="auth-brand" th:href="@{/index}" aria-label="Veritas home">
             <span class="logo-mark" aria-hidden="true">V</span>
             <span class="logo-word">
               <span class="logo-name">Veritas</span>
@@ -39,7 +39,7 @@
           </form>
           <div class="helper-links">
             <span>Already have an account?</span>
-            <a href="login.html">Go to login</a>
+            <a th:href="@{/login}">Go to login</a>
           </div>
         </section>
       </div>
