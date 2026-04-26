@@ -31,40 +31,26 @@
       <div class="container content-layout">
         <section class="section-heading">
           <span class="eyebrow">Dashboard overview</span>
-          <h1>Welcome back, Jordan.</h1>
+          <h1 th:text="'Welcome back, ' + ${user.username}"></h1>
           <p class="section-copy">Your banking snapshot is organized into clear cards so balances and recent activity are visible at a glance.</p>
         </section>
 
         <section class="grid grid-2">
           <article class="summary-card">
             <span class="summary-label">Current balance</span>
-            <div class="metric-value">$24,580.45</div>
+            <div th:text="'$'+${balance}" class="metric-value"></div>
             <p class="text-muted">Main checking account ending in 2048.</p>
           </article>
 
           <article class="summary-card">
             <h3>Recent transactions</h3>
             <ul class="transaction-list">
-              <li class="transaction-item">
+              <li th:each="tx : ${recentTransactions}" class="transaction-item">
                 <div>
-                  <div class="item-title">Grocery market</div>
-                  <div class="item-subtitle">Card payment</div>
+                  <div th:text="'$' + ${tx.description}" class="item-title"></div>
+                  <div th:text="'$' + ${tx.createdAt}" class="item-subtitle"></div>
                 </div>
-                <div class="amount-negative">-$124.65</div>
-              </li>
-              <li class="transaction-item">
-                <div>
-                  <div class="item-title">Invoice payment</div>
-                  <div class="item-subtitle">Incoming transfer</div>
-                </div>
-                <div class="amount-positive">+$1,860.00</div>
-              </li>
-              <li class="transaction-item">
-                <div>
-                  <div class="item-title">Electric utility</div>
-                  <div class="item-subtitle">Scheduled debit</div>
-                </div>
-                <div class="amount-negative">-$78.20</div>
+                <div th:text="'$' + ${tx.amount}" class="amount-negative">-$124.65</div>
               </li>
             </ul>
           </article>
