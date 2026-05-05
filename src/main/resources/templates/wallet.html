@@ -31,42 +31,48 @@
       <div class="container content-layout">
         <section class="section-heading">
           <span class="eyebrow">Wallet overview</span>
-          <h1>Your accounts and cards.</h1>
-          <p class="section-copy">Static mock balances and payment instruments are grouped into clean cards for easy review.</p>
+          <h1 th:text="'Wallets for ' + ${user.username}">Your accounts and cards.</h1>
+          <p class="section-copy">Review your real wallet balances, track active accounts, and jump into transfers or transaction history.</p>
         </section>
 
         <section class="grid grid-2">
           <article class="summary-card">
             <span class="summary-label">Total available balance</span>
-            <div class="metric-value">$24,580.45</div>
-            <p class="metric-trend">Funds available across all linked accounts.</p>
+            <div th:text="'$' + ${#numbers.formatDecimal(totalBalance, 1, 'COMMA', 2, 'POINT')}" class="metric-value">$0.00</div>
+            <p class="metric-trend" th:text="${walletCount == 1 ? '1 active wallet linked to your profile.' : walletCount + ' active wallets linked to your profile.'}">Funds available across all linked accounts.</p>
           </article>
 
+          <article class="summary-card">
+            <span class="summary-label">Quick actions</span>
+            <div class="metric-value" th:text="${walletCount}">0</div>
+            <p class="text-muted">Use your wallet to move funds and inspect account activity.</p>
+            <div class="button-row">
+              <a class="button button-primary" th:href="@{/transfers}">Send transfer</a>
+              <a class="button button-secondary" th:href="@{/transactions}">View transactions</a>
+            </div>
+          </article>
+
+        </section>
+
+        <section>
           <article class="account-card">
-            <h3>Accounts & cards</h3>
-            <ul class="list">
-              <li class="account-item">
+            <h3>Linked wallets</h3>
+            <ul class="list" th:if="${!#lists.isEmpty(wallets)}">
+              <li class="account-item" th:each="wallet, walletStat : ${wallets}">
                 <div>
-                  <div class="item-title">Everyday Checking</div>
-                  <div class="item-subtitle">IBAN ending 2048</div>
+                  <div class="item-title" th:text="${walletCount == 1 ? 'Primary wallet' : 'Wallet ' + (walletStat.index + 1)}">Primary wallet</div>
+                  <div class="item-subtitle" th:text="'Wallet ID: ' + ${wallet.id}">Wallet ID</div>
+                  <div class="item-subtitle" th:text="'Opened ' + ${#temporals.format(wallet.createdAt, 'dd MMM yyyy, HH:mm')}">Opened date</div>
                 </div>
-                <div class="amount-positive">$14,250.00</div>
-              </li>
-              <li class="account-item">
                 <div>
-                  <div class="item-title">Savings Vault</div>
-                  <div class="item-subtitle">Reserve account</div>
+                  <div th:text="'$' + ${#numbers.formatDecimal(wallet.balance, 1, 'COMMA', 2, 'POINT')}" class="amount-positive">$0.00</div>
+                  <div class="item-subtitle" th:text="'Last updated ' + ${#temporals.format(wallet.updatedAt, 'dd MMM yyyy, HH:mm')}">Last updated</div>
                 </div>
-                <div class="amount-positive">$9,830.45</div>
-              </li>
-              <li class="account-item">
-                <div>
-                  <div class="item-title">Veritas Platinum Card</div>
-                  <div class="item-subtitle">Card ending 4582</div>
-                </div>
-                <div class="item-subtitle">Limit $12,000</div>
               </li>
             </ul>
+            <div class="text-muted" th:if="${#lists.isEmpty(wallets)}">
+              You do not have any wallets yet. Once a wallet is created, its balance and activity will appear here.
+            </div>
           </article>
         </section>
       </div>

@@ -7,7 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
-import java.util.UUID;
+import java.util.List;
+import java.util.Objects;
 
 
 @Service
@@ -30,9 +31,14 @@ public class WalletService {
                 .build());
     }
 
+    public List<Wallet> getWalletsForUser(User user) {
+        return walletRepository.findByOwnerIdOrderByCreatedAtAsc(user.getId());
+    }
+
     public BigDecimal getTotalBalance(User user) {
-        return user.getWallets().stream()
+        return getWalletsForUser(user).stream()
                 .map(Wallet::getBalance)
+                .filter(Objects::nonNull)
                 .reduce(BigDecimal.ZERO, BigDecimal::add);
 
     }
